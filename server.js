@@ -28,7 +28,7 @@ app.post("/api/notes", (req, res) => {
     const addNote = {
       title,
       text,
-      note_id: uuid(),
+      id: uuid(),
     };
 
     readAndAppend(addNote, "./db/db.json");
@@ -44,6 +44,21 @@ app.post("/api/notes", (req, res) => {
   } else {
     res.json("Error in posting feedback");
   }
+});
+
+app.get("/api/terms/:term", (req, res) => {
+  // Coerce the specific search term to lowercase
+  const requestedTerm = req.params.term.toLowerCase();
+
+  // Iterate through the terms name to check if it matches `req.params.term`
+  for (let i = 0; i < termData.length; i++) {
+    if (requestedTerm === termData[i].term.toLowerCase()) {
+      return res.json(termData[i]);
+    }
+  }
+
+  // Return a message if the term doesn't exist in our DB
+  return res.json("No match found");
 });
 
 app.listen(PORT, () => console.log(`listening at http://localhost:${PORT}`));
