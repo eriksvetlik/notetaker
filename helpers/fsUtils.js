@@ -26,14 +26,14 @@ const readAndDelete = (id, file) => {
       console.error(err);
     } else {
       const parsedData = JSON.parse(data);
-      parsedData.forEach((data) => {
-        if (data.id[i] === id) {
+      for (i = 0; i < parsedData.length; i++) {
+        if (parsedData[i].id === id) {
           parsedData.splice(i, 1);
         }
-      });
+      }
       writeToFile(file, parsedData);
     }
   });
 };
 
-module.exports = { readFromFile, writeToFile, readAndAppend, readAndDelete };
+module.exports = { readFromFile, readAndAppend, readAndDelete };

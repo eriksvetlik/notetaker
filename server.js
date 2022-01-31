@@ -1,7 +1,11 @@
 const express = require("express");
 const path = require("path");
 const uuid = require("./helpers/uuid");
-const { readFromFile, readAndAppend } = require("./helpers/fsUtils");
+const {
+  readFromFile,
+  readAndAppend,
+  readAndDelete,
+} = require("./helpers/fsUtils");
 const PORT = process.env.PORT || 3000;
 const app = express();
 
@@ -46,19 +50,9 @@ app.post("/api/notes", (req, res) => {
   }
 });
 
-app.get("/api/terms/:term", (req, res) => {
-  // Coerce the specific search term to lowercase
-  const requestedTerm = req.params.term.toLowerCase();
-
-  // Iterate through the terms name to check if it matches `req.params.term`
-  for (let i = 0; i < termData.length; i++) {
-    if (requestedTerm === termData[i].term.toLowerCase()) {
-      return res.json(termData[i]);
-    }
-  }
-
-  // Return a message if the term doesn't exist in our DB
-  return res.json("No match found");
+app.delete("/api/notes/:id", (req, res) => {
+  const noteID = req.params.id;
+  readAndDelete(noteID, "./db/db.json");
 });
 
 app.listen(PORT, () => console.log(`listening at http://localhost:${PORT}`));
