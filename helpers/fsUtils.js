@@ -9,6 +9,7 @@ const writeToFile = (destination, content) => {
   );
 };
 
+// the note is added to the database
 const readAndAppend = (content, file) => {
   fs.readFile(file, "utf8", (err, data) => {
     if (err) {
@@ -21,6 +22,8 @@ const readAndAppend = (content, file) => {
   });
 };
 
+// the deleted note is identified by the id and deleted
+// from the database
 const readAndDelete = (id, file) => {
   fs.readFile(file, "utf8", (err, data) => {
     if (err) {
