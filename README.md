@@ -4,7 +4,7 @@ In this assignment, our task was to modify starter code on the back end to creat
 
 The user is able to enter a note title and text, and save the note. The note is displayed in a list with other notes. The user is able to click through the list to view each note and delete them.
 
-Node.js
+HTML | CSS | JavaScript | Node.js
 
 # Screenshot
 
