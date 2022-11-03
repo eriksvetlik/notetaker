@@ -9,7 +9,3 @@ HTML | CSS | JavaScript | Node.js
 # Screenshot
 
 ![Screenshot of webpage](./images/homework-readme.png)
-
-# Link
-
-https://notetaker2122.herokuapp.com/
